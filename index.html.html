@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계산기</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            width: 100vw;
+            height: 100vh;
+        }
+        .calc {
+            margin: 30px auto;
+            width: 200px;
+            height: 280px;
+            background-color: lightblue;
+            outline: 2px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 5px 0px;
+        }
+        #resultDisplay {
+            width: 180px;
+            height: 25px;
+            border: 2px solid black;
+            text-align: right;
+            padding-right: 5px;
+            box-sizing: border-box;
+            margin-bottom: 0%;
+            border-bottom: 3px dotted #ccc;
+            background-color: wheat;
+        }
+        #result {
+            width: 180px;
+            height: 25px;
+            border: 2px solid black;
+            text-align: right;
+            padding-right: 5px;
+            box-sizing: border-box;
+            margin-top: 0%;
+            border-top: none;
+            background-color: wheat;
+        }
+        .number {
+            width: 180px;
+            height: 180px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .num {
+            height: 30px;
+            width: 50px;
+        }
+        #clear {
+            width: 110px;
+            height: 30px;
+        }
+        .oper {
+            outline: 1px solid black;
+            width: 180px;
+            height: 30px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .btn {
+            width: 28px;
+            height: 20px;
+        }
+        #resultValue {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="calc">
+        <div class="resul">
+            <p id="resultDisplay"></p>
+            <p id="result"></p>
+        </div>       
+        <input type="text" id="resultValue" value="0" readonly>
+        <div class="number">
+            <button onclick="numb(1)" id="num1" class="num" value="1">1</button>
+            <button onclick="numb(2)" id="num2" class="num" value="2">2</button>
+            <button onclick="numb(3)" id="num3" class="num" value="3">3</button>
+            <button onclick="numb(4)" id="num4" class="num" value="4">4</button>
+            <button onclick="numb(5)" id="num5" class="num" value="5">5</button>
+            <button onclick="numb(6)" id="num6" class="num" value="6">6</button>
+            <button onclick="numb(7)" id="num7" class="num" value="7">7</button>
+            <button onclick="numb(8)" id="num8" class="num" value="8">8</button>
+            <button onclick="numb(9)" id="num9" class="num" value="9">9</button>
+            <button onclick="numb(0)" id="num0" class="num" value="0">0</button>
+            <button onclick="zero()" id="clear" value="0">Clear</button>
+        </div>
+       <div class="oper">
+            <button onclick="numb('+')" id="num+" class="btn" value="+">+</button>
+            <button onclick="numb('-')" id="num-" class="btn" value="-">-</button>
+            <button onclick="numb('*')" id="num*" class="btn" value="*">*</button>
+            <button onclick="numb('/')" id="num/" class="btn" value="/">/</button>
+            <button onclick="equal()" id="equal" class="btn" value="=">=</button>
+       </div>
+    </div>
+
+    <script>
+        let m =document.getElementById('num9');
+        let output = document.getElementById('result');
+        let outputDisplay = document.getElementById('resultDisplay');
+        let outputValue = document.getElementById('resultValue').value;
+        function numb(i) {
+            if(outputValue=='0') {
+                let n = document.getElementById(`num${i}`).value;
+                console.log(n);
+                outputValue=n;
+                console.log(outputValue);
+                outputDisplay.innerHTML=n;
+            }else {
+                let n = document.getElementById(`num${i}`).value;
+                console.log(n);
+                outputValue+=n;
+                console.log(outputValue);
+                outputDisplay.innerHTML+=n;
+            }
+        }
+        function zero() {
+            outputValue='0'
+            console.log(outputValue);
+            outputDisplay.innerHTML=" ";
+            output.innerHTML=" "
+        }
+        function equal() {
+
+            console.log(outputValue);
+            output.innerHTML=eval(outputValue);
+            outputDisplay.innerHTML=(`${outputValue}=`);
+        }
+        
+    </script>
+</body>
+</html>
